@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<record id="res_config_settings_view_form" model="ir.ui.view">
+		<field name="name">res.config.settings.view.form.inherit.sms_cm</field>
+		<field name="model">res.config.settings</field>
+		<field name="inherit_id" ref="mass_mailing.res_config_settings_view_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//div[hasclass('settings')]/div[hasclass('app_settings_block')]/div[@name='managa_mail_campaigns_setting_container']" position="inside">
+				<div class="col-md-6 o_setting_box col-xs-12" name="allow_custom_sms_setting_container">
+					<div class="o_setting_left_pane" title="Allow users to send sms to partners with custom provider and without using iap">
+						<field name="allow_custom_sms"/>
+					</div>
+					<div class="o_setting_right_pane">
+						<label for="allow_custom_sms"/>
+						<div class="text-muted">
+							Use custom provider to send SMS to your contacts
+						</div>
+					</div>
+				</div>
+			</xpath>
+		</field>
+	</record>
+</odoo>

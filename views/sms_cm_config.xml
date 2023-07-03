@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="sms_cm_config_view_form">
+			<field name="name">sms_cm.config.view.form</field>
+			<field name="model">sms_cm.config</field>
+			<field name="arch" type="xml">
+				<form string="SMS Configuration">
+					<header>
+						<button name="action_disable" type="object" data-hotkey="shift+d"
+                            string="Disable"
+                            attrs="{'invisible': [('state', '=', 'draft')]}"/>
+						<button name="action_enable" type="object" data-hotkey="shift+e"
+									  string="Enable" class="oe_highlight"
+									  attrs="{'invisible': [('state', '=', 'done')]}"/>
+						<field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+					</header>
+					<sheet>
+						<group>
+							<group>
+								<field name="name"/>
+								<field name="api_sender"/>
+							</group>
+							<group>
+								<field name="api_key" password="True"/>
+								<field name="api_password" password="True"/>
+							</group>
+						</group>
+						<group>
+							<field name="send_sms_endpoint"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="sms_cm_config_view_tree">
+			<field name="name">sms_cm.config.view.tree</field>
+			<field name="model">sms_cm.config</field>
+			<field name="arch" type="xml">
+				<tree string="SMS Configuration">
+					<field name="name"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="sms_cm_config_action">
+			<field name="name">SMS Configuration</field>
+			<field name="res_model">sms_cm.config</field>
+			<field name="view_id" ref="sms_cm_config_view_tree"/>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					Create a new SMS configuration
+				</p>
+				<p>
+					You must define a configuration before starting send SMS notifications.
+				</p>
+			</field>
+		</record>
+
+		<menuitem
+    		name="SMS CM"
+            id="sms_cm_root_menu"
+            />
+
+		<menuitem
+    		name="Configuration"
+            id="sms_cm_config_root_menu"
+            parent = "sms_cm.sms_cm_root_menu"
+            />
+
+		<menuitem
+    		name="API Configuration"
+            id="sms_cm_config_menu"
+            action="sms_cm_config_action"
+            parent = "sms_cm.sms_cm_config_root_menu"
+            />
+	</data>
+</odoo>

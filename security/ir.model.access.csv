@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sms_cm_config_admin,sms_cm.sms.admin,model_sms_cm_config,sms_cm_admin_group,1,1,1,1
